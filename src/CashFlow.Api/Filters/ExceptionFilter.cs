@@ -2,6 +2,7 @@
 using CashFlow.Exception.ExceptionsBase;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using System;
 
 namespace CashFlow.Api.Filters;
 
@@ -22,8 +23,14 @@ public class ExceptionFilter : IExceptionFilter
     {
         if (context.Exception is CashFlowException)
         {
-            var exception = (ErrorOnValidationException) context.Exception;
+            var exception = (ErrorOnValidationException)context.Exception;
             var errorResponse = new ResponseErrorJson(exception.Errors);
+            context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+            context.Result = new ObjectResult(errorResponse);
+        }
+        else
+        {
+            var errorResponse = new ResponseErrorJson(context.Exception.Message);
             context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
             context.Result = new ObjectResult(errorResponse);
         }
