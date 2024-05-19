@@ -52,13 +52,15 @@ public class RegisterExpenseValidatorTests
         result.Errors.Should().ContainSingle().And.Contain(error => error.ErrorMessage.Equals(ResourceErrorMessages.EXPENSES_CANNOT_FROM_THE_FUTURE));
     }
 
-    [Fact]
-    public void ErrorAmountLowerThanZero()
+    [Theory]
+    [InlineData(0)]
+    [InlineData(-1)]
+    public void ErrorAmountLowerThanZero(decimal amount)
     {
         // Arrange
         var validator = new RegisterExpenseValidator();
         var request = RequestRegisterExpenseJsonBuilder.Build();
-        request.Amount = -1;
+        request.Amount = amount;
 
         // Act
         var result = validator.Validate(request);
