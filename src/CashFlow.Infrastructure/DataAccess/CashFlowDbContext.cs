@@ -5,11 +5,8 @@ namespace CashFlow.Infrastructure.DataAccess;
 internal class CashFlowDbContext : DbContext
 {
     public DbSet<Expense> Expenses { get; set; }
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public CashFlowDbContext(DbContextOptions options) : base(options)
     {
-        var connectionString = "Server=localhost;Database=cashflowdb;Uid=root;Pwd=password";
-        var version = new Version(8, 0);
-        var serverVersion = new MySqlServerVersion(version);
-        optionsBuilder.UseMySql(connectionString, serverVersion);
+
     }
 }
