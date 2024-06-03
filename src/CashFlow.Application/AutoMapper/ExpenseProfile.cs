@@ -18,5 +18,6 @@ public class ExpenseProfile : Profile
     private void EntityToResponse()
     {
         CreateMap<Expense, ResponseRegisteredExpenseJson>();
+        CreateMap<Expense, ResponseShortExpenseJson>();
     }
 }
