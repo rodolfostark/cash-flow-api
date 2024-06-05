@@ -23,9 +23,9 @@ public class ExceptionFilter : IExceptionFilter
     {
         if (context.Exception is CashFlowException)
         {
-            var exception = (ErrorOnValidationException)context.Exception;
-            var errorResponse = new ResponseErrorJson(exception.Errors);
-            context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+            var exception = (CashFlowException)context.Exception;
+            var errorResponse = new ResponseErrorJson(exception.GetErrors());
+            context.HttpContext.Response.StatusCode = exception.StatusCode;
             context.Result = new ObjectResult(errorResponse);
         }
         else
