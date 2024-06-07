@@ -5,14 +5,14 @@ using CashFlow.Exception;
 using CashFlow.Exception.ExceptionsBase;
 
 namespace CashFlow.Application.UseCases.Expenses.GetById;
-public class GetExpenseByIdUseCase(IExpensesRepository expensesRepository, IMapper mapper) : IGetExpenseByIdUseCase
+public class GetExpenseByIdUseCase(IExpensesReadOnlyRepository expensesReadOnlyRepository, IMapper mapper) : IGetExpenseByIdUseCase
 {
-    private readonly IExpensesRepository _expensesRepository = expensesRepository;
+    private readonly IExpensesReadOnlyRepository _expensesReadOnlyRepository = expensesReadOnlyRepository;
     private readonly IMapper _mapper = mapper;
 
     public async Task<ResponseExpenseJson> Execute(long id)
     {
-        var expense = await _expensesRepository.GetById(id);
+        var expense = await _expensesReadOnlyRepository.GetById(id);
         if (expense is null)
         {
             throw new NotFoundException(ResourceErrorMessages.EXPENSE_NOT_FOUND);
