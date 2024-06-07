@@ -1,21 +1,19 @@
-## Sobre o projeto
+## About the project
 
-Esta **API**, desenvolvida utilizando **.NET 8**, adota os princípios do **Domain-Driven Design (DDD)** para oferecer uma solução estruturada e eficaz no gerenciamento de despesas pessoais. O principal objetivo é permitir que os usuários registrem suas despesas, detalhando informações como título, data e hora, descrição, valor e tipo de pagamento, com os dados sendo armazenados de forma segura em um banco de dados **MySQL**.
+This **API**, developed using **.NET 8**, adopts the principles of **Domain-Driven Design (DDD)** to provide a structured and effective solution for managing personal expenses. The main objective is to allow users to record their expenses, detailing information such as title, date and time, description, amount, and payment type, with data securely stored in a **MySQL** database.
 
-A arquitetura da **API** baseia-se em **REST**, utilizando métodos **HTTP** padrão para uma comunicação eficiente e simplificada. Além disso, é complementada por uma documentação **Swagger**, que proporciona uma interface gráfica interativa para que os desenvolvedores possam explorar e testar os endpoints de maneira fácil.
+The architecture of the **API** is based on **REST**, utilizing standard **HTTP** methods for efficient and simplified communication. Additionally, it is complemented by **Swagger** documentation, providing an interactive graphical interface for developers to explore and test the endpoints easily.
 
-Dentre os pacotes NuGet utilizados, o **AutoMapper** é o responsável pelo mapeamento entre objetos de domínio e requisição/resposta, reduzindo a necessidade de código repetitivo e manual. O **FluentAssertions** é utilizado nos testes de unidade para tornar as verificações mais legíveis, ajudando a escrever testes claros e compreensíveis. Para as validações, o **FluentValidation** é usado para implementar regras de validação de forma simples e intuitiva nas classes de requisições, mantendo o código limpo e fácil de manter. Por fim, o **EntityFramework** atua como um ORM (Object-Relational Mapper) que simplifica as interações com o banco de dados, permitindo o uso de objetos .NET para manipular dados diretamente, sem a necessidade de lidar com consultas SQL.
-
-![hero-image]
+Among the NuGet packages used, **AutoMapper** is responsible for mapping between domain objects and request/response objects, reducing the need for repetitive and manual code. **FluentAssertions** is used in unit tests to make assertions more readable, helping to write clear and comprehensible tests. For validations, **FluentValidation** is used to implement validation rules in a simple and intuitive way in request classes, keeping the code clean and easy to maintain. Finally, **EntityFramework** acts as an ORM (Object-Relational Mapper) that simplifies interactions with the database, allowing the use of .NET objects to manipulate data directly, without the need to deal with SQL queries.
 
 ### Features
 
-- **Domain-Driven Design (DDD)**: Estrutura modular que facilita o entendimento e a manutenção do domínio da aplicação.
-- **Testes de Unidade**: Testes abrangentes com FluentAssertions para garantir a funcionalidade e a qualidade.
-- **Geração de Relatórios**: Capacidade de exportar relatórios detalhados para **PDF e Excel**, oferecendo uma análise visual e eficaz das despesas.
-- **RESTful API com Documentação Swagger**: Interface documentada que facilita a integração e o teste por parte dos desenvolvedores.
+- **Domain-Driven Design (DDD)**: Modular structure that facilitates the understanding and maintenance of the application domain.
+- **Unit Tests**: Comprehensive tests with FluentAssertions to ensure functionality and quality.
+- **Report Generation**: Capability to export detailed reports to **PDF and Excel**, offering a visual and effective analysis of expenses.
+- **RESTful API with Swagger Documentation**: Documented interface that facilitates integration and testing by developers.
 
-### Construído com
+### Built with
 
 ![badge-dot-net]
 ![badge-windows]
@@ -25,25 +23,23 @@ Dentre os pacotes NuGet utilizados, o **AutoMapper** é o responsável pelo mape
 
 ## Getting Started
 
-Para obter uma cópia local funcionando, siga estes passos simples.
+To get a local copy up and running, follow these simple steps.
 
-### Requisitos
+### Requirements
 
-* Visual Studio versão 2022+ ou Visual Studio Code
-* Windows 10+ ou Linux/MacOS com [.NET SDK][dot-net-sdk] instalado
-* MySql Server
+* Visual Studio version 2022+ or Visual Studio Code
+* Windows 10+ or Linux/MacOS with [.NET SDK][dot-net-sdk] installed
+* MySQL Server
 
-### Instalação
+### Installation
 
-1. Clone o repositório:
+1. Clone the repository:
     ```sh
     git clone https://github.com/rodolfostark/cash-flow-api.git
     ```
 
-2. Preencha as informações no arquivo `appsettings.Development.json`.
-3. Execute a API e aproveite o seu teste :)
-
-
+2. Fill in the information in the `appsettings.Development.json` file.
+3. Run the API and enjoy testing it :)
 
 <!-- Links -->
 [dot-net-sdk]: https://dotnet.microsoft.com/en-us/download/dotnet/8.0
