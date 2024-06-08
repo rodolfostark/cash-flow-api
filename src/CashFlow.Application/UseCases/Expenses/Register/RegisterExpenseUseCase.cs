@@ -13,7 +13,7 @@ public class RegisterExpenseUseCase(IExpensesWriteOnlyRepository expensesWriteOn
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly IMapper _mapper = mapper;
 
-    public async Task<ResponseRegisteredExpenseJson> Execute(RequestRegisterExpenseJson request)
+    public async Task<ResponseRegisteredExpenseJson> Execute(RequestExpenseJson request)
     {
         Validate(request);
         var expense = _mapper.Map<Expense>(request);
@@ -21,7 +21,7 @@ public class RegisterExpenseUseCase(IExpensesWriteOnlyRepository expensesWriteOn
         await _unitOfWork.Commit();
         return _mapper.Map<ResponseRegisteredExpenseJson>(expense);
     }
-    private void Validate(RequestRegisterExpenseJson request)
+    private void Validate(RequestExpenseJson request)
     {
         var validator = new RegisterExpenseValidator();
         var result = validator.Validate(request);

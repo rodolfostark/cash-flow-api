@@ -13,7 +13,7 @@ public class ExpenseProfile : Profile
     }
     private void RequestToEntity()
     {
-        CreateMap<RequestRegisterExpenseJson, Expense>();
+        CreateMap<RequestExpenseJson, Expense>();
     }
     private void EntityToResponse()
     {
