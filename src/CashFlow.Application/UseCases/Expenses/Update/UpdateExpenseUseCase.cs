@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using CashFlow.Application.UseCases.Expenses.Register;
 using CashFlow.Communication.Requests;
 using CashFlow.Domain.Repositories;
 using CashFlow.Domain.Repositories.Expenses;
@@ -26,7 +25,7 @@ public class UpdateExpenseUseCase(IExpensesUpdateOnlyRepository expensesUpdateOn
     }
     private void Validate(RequestExpenseJson request)
     {
-        var validator = new RegisterExpenseValidator();
+        var validator = new ExpenseValidator();
         var result = validator.Validate(request);
         if (!result.IsValid)
         {
