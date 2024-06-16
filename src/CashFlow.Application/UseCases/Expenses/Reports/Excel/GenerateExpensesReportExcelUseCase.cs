@@ -9,6 +9,13 @@ public class GenerateExpensesReportExcelUseCase(IExpensesReadOnlyRepository expe
     private readonly IExpensesReadOnlyRepository _expensesReadOnlyRepository = expensesReadOnlyRepository;
     public async Task<byte[]> Execute(DateOnly month)
     {
+        var expenses = await _expensesReadOnlyRepository.GetExpensesByMonth(month);
+        
+        if (expenses.Count == 0)
+        {
+            return [];
+        }
+
         var workbook = new XLWorkbook();
         workbook.Author = "Jonatas Santos";
         workbook.Style.Font.FontSize = 12;
