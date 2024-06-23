@@ -1,6 +1,4 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
-using MigraDoc.DocumentObjectModel;
-using PdfSharp.Fonts;
+﻿using PdfSharp.Fonts;
 using System.Reflection;
 
 namespace CashFlow.Application.UseCases.Expenses.Reports.Pdf.Fonts;
@@ -8,7 +6,9 @@ public class ExpensesReportFontResolver : IFontResolver
 {
     public byte[]? GetFont(string faceName)
     {
-        var stream = ReadFontFile(faceName) ?? ReadFontFile(FontHelper.DEFAULT_FONT);
+        var stream = ReadFontFile(faceName);
+        
+        stream ??= ReadFontFile(FontHelper.DEFAULT_FONT);
 
         var length = (int)stream!.Length;
         
@@ -23,9 +23,9 @@ public class ExpensesReportFontResolver : IFontResolver
     {
         return new FontResolverInfo(familyName);
     }
-    private static Stream? ReadFontFile(string faceName) 
+    private Stream? ReadFontFile(string faceName) 
     {
         var assembly = Assembly.GetExecutingAssembly();
-        return assembly.GetManifestResourceStream($"Cashflow.Application.UseCases.Expenses.Reports.Pdf.Fonts.{faceName}.ttf");
+        return assembly.GetManifestResourceStream($"CashFlow.Application.UseCases.Expenses.Reports.Pdf.Fonts.{faceName}.ttf");
     }
 }

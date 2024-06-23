@@ -142,9 +142,12 @@
     <value>Despesas Para</value>
   </data>
   <data name="PAYMENT_TYPE" xml:space="preserve">
-    <value>Tipo de pagamento</value>
+    <value>Tipo de Pagamento</value>
   </data>
   <data name="TITLE" xml:space="preserve">
     <value>Título</value>
+  </data>
+  <data name="TOTAL_SPENT_IN" xml:space="preserve">
+    <value>Total Gasto Em {0}</value>
   </data>
 </root>
