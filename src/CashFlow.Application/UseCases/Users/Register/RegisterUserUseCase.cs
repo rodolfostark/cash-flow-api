@@ -2,6 +2,7 @@
 using CashFlow.Communication.Requests;
 using CashFlow.Communication.Responses;
 using CashFlow.Domain.Entities;
+using CashFlow.Exception.ExceptionsBase;
 
 namespace CashFlow.Application.UseCases.Users.Register;
 public class RegisterUserUseCase(IMapper mapper) : IRegisterUserUseCase
@@ -15,6 +16,15 @@ public class RegisterUserUseCase(IMapper mapper) : IRegisterUserUseCase
     }
     private void Validate(RequestRegisterUserJson request)
     {
+        var validator = new RegisterUserValidator();
+        var result = validator.Validate(request);
+        if (!result.IsValid)
+        {
+            var errorMessages = result.Errors
+                .Select(error => error.ErrorMessage)
+                .ToList();
+            throw new ErrorOnValidationException(errorMessages);
+        }
 
     }
 }
