@@ -20,6 +20,7 @@ public static class DependencyInjectionExtension
     private static void AddAutoMapper(IServiceCollection services)
     {
         services.AddAutoMapper(typeof(ExpenseProfile));
+        services.AddAutoMapper(typeof(UserProfile));
     }
 
     private static void AddUseCases(IServiceCollection services)
