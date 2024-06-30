@@ -13,7 +13,8 @@ public class UserProfile : Profile
     }
     private void RequestToEntity()
     {
-        CreateMap<RequestRegisterUserJson, User>();
+        CreateMap<RequestRegisterUserJson, User>()
+            .ForMember(user => user.Password, config => config.Ignore());
     }
     private void EntityToResponse()
     {
