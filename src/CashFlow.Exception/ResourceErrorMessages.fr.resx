@@ -123,6 +123,9 @@
   <data name="EMAIL_EMPTY" xml:space="preserve">
     <value>L'email ne peut pas être vide</value>
   </data>
+  <data name="EMAIL_INVALID" xml:space="preserve">
+    <value>L'email n'est pas valide</value>
+  </data>
   <data name="EXPENSES_CANNOT_FROM_THE_FUTURE" xml:space="preserve">
     <value>Les dépenses ne peuvent pas provenir du futur</value>
   </data>
