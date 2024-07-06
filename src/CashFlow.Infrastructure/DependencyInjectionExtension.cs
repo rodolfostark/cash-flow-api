@@ -16,6 +16,7 @@ public static class DependencyInjectionExtension
     public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         AddDbContext(services, configuration);
+        AddToken(services, configuration);
         AddRepositories(services);
         AddSecurity(services);
     }
@@ -38,6 +39,12 @@ public static class DependencyInjectionExtension
     private static void AddSecurity(IServiceCollection services) 
     {
         services.AddScoped<IPasswordEncrypter, Security.Cryptography.BCrypt>();
-        services.AddScoped<IAccessTokenGenerator, JwtTokenGenerator>();
     }
+    private static void AddToken(IServiceCollection services, IConfiguration configuration)
+    {
+        var expirationTimeMinutes = configuration.GetValue<uint>("Settings:Jwt:ExpiresMinutes");
+        var signingKey = configuration.GetValue<string>("Settings:Jwt:SigningKey");
+        services.AddScoped<IAccessTokenGenerator>(config => new JwtTokenGenerator(expirationTimeMinutes, signingKey!));
+    }
+
 }
