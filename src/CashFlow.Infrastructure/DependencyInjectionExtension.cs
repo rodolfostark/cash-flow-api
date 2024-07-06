@@ -2,8 +2,10 @@
 using CashFlow.Domain.Repositories.Expenses;
 using CashFlow.Domain.Repositories.Users;
 using CashFlow.Domain.Security.Cryptography;
+using CashFlow.Domain.Security.Tokens;
 using CashFlow.Infrastructure.DataAccess;
 using CashFlow.Infrastructure.DataAccess.Repositories;
+using CashFlow.Infrastructure.Security.Tokens;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,6 +37,7 @@ public static class DependencyInjectionExtension
     }
     private static void AddSecurity(IServiceCollection services) 
     {
-        services.AddScoped<IPasswordEncrypter, Security.BCrypt>();
+        services.AddScoped<IPasswordEncrypter, Security.Cryptography.BCrypt>();
+        services.AddScoped<IAccessTokenGenerator, JwtTokenGenerator>();
     }
 }
