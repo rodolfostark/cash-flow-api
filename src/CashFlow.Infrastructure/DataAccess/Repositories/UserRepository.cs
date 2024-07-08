@@ -16,4 +16,9 @@ internal class UserRepository(CashFlowDbContext dbContext) : IUserReadOnlyReposi
     {
         return await _dbContext.Users.AnyAsync(user => user.Email.Equals(email));
     }
+
+    public Task<User?> GetUserByEmail(string email)
+    {
+        return _dbContext.Users.FirstOrDefaultAsync(user => user.Email.Equals(email));
+    }
 }
