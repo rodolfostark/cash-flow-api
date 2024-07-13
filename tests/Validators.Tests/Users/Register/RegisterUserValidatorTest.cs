@@ -49,7 +49,9 @@ public class RegisterUserValidatorTest
         var result = validator.Validate(request);
         // Assert
         result.IsValid.Should().BeFalse();
-        result.Errors.Should().Contain(error => error.ErrorMessage.Equals(ResourceErrorMessages.EMAIL_EMPTY));
+        result.Errors.Should()
+            .ContainSingle()
+            .And.Contain(error => error.ErrorMessage.Equals(ResourceErrorMessages.EMAIL_EMPTY));
     }
 
 }
