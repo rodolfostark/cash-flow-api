@@ -54,4 +54,38 @@ public class RegisterUserValidatorTest
             .And.Contain(error => error.ErrorMessage.Equals(ResourceErrorMessages.EMAIL_EMPTY));
     }
 
+    [Theory]
+    [InlineData("jonatas.com")]
+    [InlineData("jonatas.us")]
+    [InlineData("jonatas.br")]
+    public void Error_Email_Invalid(string emailInvalid)
+    {
+        // Arrange
+        var validator = new RegisterUserValidator();
+        var request = RequestRegisterUserJsonBuilder.Build();
+        request.Email = emailInvalid;
+        // Act
+        var result = validator.Validate(request);
+        // Assert
+        result.IsValid.Should().BeFalse();
+        result.Errors.Should()
+            .ContainSingle()
+            .And.Contain(error => error.ErrorMessage.Equals(ResourceErrorMessages.EMAIL_INVALID));
+    }
+
+    [Fact]
+    public void Error_Password_Empty() 
+    {
+        // Arrange
+        var validator = new RegisterUserValidator();
+        var request = RequestRegisterUserJsonBuilder.Build();
+        request.Password = string.Empty;
+        // Act
+        var result = validator.Validate(request);
+        // Assert
+        result.IsValid.Should().BeFalse();
+        result.Errors.Should()
+            .ContainSingle()
+            .And.Contain(error => error.ErrorMessage.Equals(ResourceErrorMessages.PASSWORD_EMPTY));
+    }
 }

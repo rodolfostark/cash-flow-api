@@ -21,6 +21,7 @@ public class RegisterUserValidator : AbstractValidator<RequestRegisterUserJson>
         RuleFor(user => user.Password)
             .NotEmpty()
             .WithMessage(ResourceErrorMessages.PASSWORD_EMPTY)
-            .SetValidator(new PasswordValidator<RequestRegisterUserJson>());
+            .SetValidator(new PasswordValidator<RequestRegisterUserJson>())
+            .When(user => !string.IsNullOrWhiteSpace(user.Password), ApplyConditionTo.CurrentValidator);
     }
 }
