@@ -4,9 +4,13 @@ using Moq;
 namespace CommonTestUtilities.Repositories;
 public class UserReadOnlyRepositoryBuilder
 {
-    public static IUserReadOnlyRepository Build()
+    private readonly Mock<IUserReadOnlyRepository> _userReadOnlyRepository = new Mock<IUserReadOnlyRepository>();
+    public IUserReadOnlyRepository Build() => _userReadOnlyRepository.Object;
+
+    public void ExistActiveUserWithEmail(string email)
     {
-        var userReadOnlyRepository = new Mock<IUserReadOnlyRepository>();
-        return userReadOnlyRepository.Object;
+        _userReadOnlyRepository
+            .Setup(userReadOnly => userReadOnly.ExistActiveUserWithEmail(email))
+            .ReturnsAsync(true);
     }
 }
