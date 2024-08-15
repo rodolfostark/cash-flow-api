@@ -51,9 +51,10 @@ public class DoLoginUseCaseTest
         var user = UserBuilder.Build();
 
         var request = RequestLoginJsonBuilder.Build();
+
         request.Email = user.Email;
 
-        var useCase = CreateUseCase(user, request.Password);
+        var useCase = CreateUseCase(user);
 
         var act = async () => await useCase.Execute(request);
 
@@ -63,7 +64,7 @@ public class DoLoginUseCaseTest
     }
 
 
-    private DoLoginUseCase CreateUseCase(User user, string password)
+    private DoLoginUseCase CreateUseCase(User user, string? password = null)
     {
         var passwordEncrypter = new PasswordEncrypterBuilder().Verify(password).Build();
         var tokenGenerator = JwtTokenGeneratorBuilder.Build();

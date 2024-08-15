@@ -13,12 +13,14 @@ public class PasswordEncrypterBuilder
             .Returns("cGFzc3dvcmQ=");
     }
 
-    public PasswordEncrypterBuilder Verify(string password)
+    public PasswordEncrypterBuilder Verify(string? password)
     {
-        _passwordEncrypter
+        if (!string.IsNullOrWhiteSpace(password))
+        {
+            _passwordEncrypter
             .Setup(passwordEncrypter => passwordEncrypter.Verify(password, It.IsAny<string>()))
             .Returns(true);
-        
+        }
         return this;
     }
 
